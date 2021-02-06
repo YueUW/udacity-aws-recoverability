@@ -1,0 +1,57 @@
+Yues-MacBook-Pro:Downloads niuniu$ ssh -i "my-ec2-keypair.pem" ec2-user@ec2-3-16-68-228.us-east-2.compute.amazonaws.com
+Last login: Sat Feb  6 19:05:11 2021 from 97.108.128.22
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-1-10-249 ~]$ mysql --host=udacity.ckuxxnxcatuq.us-east-2.rds.amazonaws.com --user=admin --password=password udacity
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 30
+Server version: 8.0.20 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [udacity]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| udacity            |
++--------------------+
+4 rows in set (0.00 sec)
+
+MySQL [udacity]> show tables;
+Empty set (0.00 sec)
+
+MySQL [udacity]> CREATE TABLE country_state(
+    ->     id INT NOT NULL AUTO_INCREMENT,
+    ->     country VARCHAR(40) NOT NULL,
+    ->     value INT NOT NULL,
+    ->     PRIMARY KEY ( id )
+    ->     );
+Query OK, 0 rows affected (0.07 sec)
+
+MySQL [udacity]> INSERT INTO country_state (country, value)
+    -> VALUES ('Canada', 13);
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [udacity]> INSERT INTO country_state (country, value)
+    -> VALUES ('USA', 52);
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [udacity]> SELECT * FROM country_state;
++----+---------+-------+
+| id | country | value |
++----+---------+-------+
+|  1 | Canada  |    13 |
+|  2 | USA     |    52 |
++----+---------+-------+
+2 rows in set (0.00 sec)
+
+MySQL [udacity]> 

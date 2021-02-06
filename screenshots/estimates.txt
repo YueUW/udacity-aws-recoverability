@@ -1,0 +1,6 @@
+Recovery Time Objective (RTO) and Recovery Point Objective (RPO) for the Multi-AZ, multi-region database
+
+1. Minimum RTO for a single AZ outage: 2 minutes. AWS handles single AZ outage automatically by switching to a standby replica in another AZ. Failover time are usually 60-120 seconds.
+2. Minimum RTO for a single region outage: 40 minutes. The cross-region DR strategy is using snapshot to restore. The RTO depends on how quickly to restore a DB instance from the copied snapshot. As this would be a manual task, RTO should also account for the time for an on-call person would need to turn on their laptop and actucally look into the isse.
+3. Minimum RPO for a single AZ outage: 0 minute.  With Multi-AZ, you have a separate synchronous copy of the volume being maintained in a separate data center (AZ), so customer has no data loss on a common failure. 
+4. Minimum RPO for a single region outage: 10 minutes. With asynchronous read replication, there can be a replication lag between primary and read replica. The RPO depends on how the read replica captures new data on primary DB. It can range from seconds to minutes.

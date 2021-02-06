@@ -1,0 +1,52 @@
+Yues-MacBook-Pro:Downloads niuniu$ ssh -i "my-standby-ec2-keypair.pem" ec2-user@ec2-3-238-189-60.compute-1.amazonaws.com
+Last login: Sat Feb  6 19:44:34 2021 from 97.108.128.22
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-2-10-97 ~]$ mysql --host=udacity-replica.cl8hp6jtkp3w.us-east-1.rds.amazonaws.com --user=admin --password=password udacity
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 28
+Server version: 8.0.20 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [udacity]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| udacity            |
++--------------------+
+4 rows in set (0.00 sec)
+
+MySQL [udacity]> show tables;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| country_state     |
++-------------------+
+1 row in set (0.00 sec)
+
+MySQL [udacity]> INSERT INTO country_state (country, value)
+    -> VALUES ('Mexico', 32);
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+MySQL [udacity]> SELECT * FROM country_state;
++----+---------+-------+
+| id | country | value |
++----+---------+-------+
+|  1 | Canada  |    13 |
+|  2 | USA     |    52 |
++----+---------+-------+
+2 rows in set (0.00 sec)
+
+MySQL [udacity]> 
